@@ -10,11 +10,11 @@ public class Wk02Q3 {
         long totalMinutes = totalSeconds / 60;
         long currentTotalMinutes = totalMinutes % 60;
         long totalHours = totalMinutes / 60;
-        long currentTotalHours = totalHours % 24 + 8; // GMT + 8
+        long currentTotalHours = totalHours % 24; // + 8; // GMT + 8
 
         System.out.println(
                 "Current time is " + currentTotalHours + ":" + currentTotalMinutes + ":" + currentTotalSeconds
-                        + " GMT+8");
+                        + " GMT");
 
     }
 
