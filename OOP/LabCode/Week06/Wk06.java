@@ -75,13 +75,11 @@ public class Wk06 {
 
         System.out.println("\n\nSwapping using Hash Collections!");
         System.out.println("Choose which index to swap!");
-        int indexOneHash = 0;
-        int indexTwoHash = 0;
-        collect.printLinkList(linkList);
+        collect.printHashMap(hashMap);;
         System.out.print("\nInsert two index: ");
         Scanner inputIndexHash = new Scanner(System.in);
-        indexOne = inputIndexHash.nextInt();
-        indexTwo = inputIndexHash.nextInt();
+        int indexOneHash = inputIndexHash.nextInt();
+        int indexTwoHash = inputIndexHash.nextInt();
         collect.hashSwapValues(hashMap, indexOneHash, indexTwoHash);
 
         Random randomValuesHash = new Random();
