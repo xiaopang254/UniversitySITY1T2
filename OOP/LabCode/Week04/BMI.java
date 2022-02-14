@@ -28,9 +28,17 @@ public class BMI {
         this.inches = inches;
     }
 
+    private double convertToKilograms() {
+        return (this.getPounds() * 0.45359237);
+    }
+
+    private double convertToMeters() {
+        return (this.getInches() * 0.0254);
+    }
+
     public void calculateBMI() {
-        double kilogram = this.getPounds() * 0.45359237;
-        double meters = this.getInches() * 0.0254;
+        double kilogram = convertToKilograms();
+        double meters = convertToMeters();
         double BMI = kilogram / Math.pow(meters, 2);
         System.out.println("BMI is " + BMI);
 

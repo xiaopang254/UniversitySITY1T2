@@ -28,12 +28,11 @@ def moveTower(height,fromPole, toPole, withPole):
     # add code here
     #call moveDisk in your function call.
     if(height == 0):
-       return
-    moveDisk(fromPole,toPole)
+        return
+    
     moveTower(height-1, fromPole, withPole, toPole)
     moveDisk(fromPole,toPole)
-    
-    
+    moveTower(height-1, withPole, toPole, fromPole)
 
 def moveDisk(fp,tp):
     print("moving disk from",fp,"to",tp)
