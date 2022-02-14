@@ -16,8 +16,8 @@ public class TryCollections {
         }
     }
 
-    public void printHashMap(HashMap<Integer, Integer>hashMap) {
-        for (Integer name: hashMap.keySet()){
+    public void printHashMap(HashMap<Integer, Integer> hashMap) {
+        for (Integer name : hashMap.keySet()) {
             String key = hashMap.get(name).toString();
             System.out.print(key + " ");
         }
@@ -38,19 +38,16 @@ public class TryCollections {
 
     public void hashAddAndSort(HashMap<Integer, Integer> hashMap, int value) {
 
-
         hashMap.put(hashMap.size(), value);
         ArrayList<Integer> list = new ArrayList<Integer>(hashMap.values());
         System.out.print("Before sorted: ");
         printHashMap(hashMap);
-        
 
         Collections.sort(list);
 
-        for(int i = 0; i < list.size(); i++)
-        {
+        for (int i = 0; i < list.size(); i++) {
             var test = list.get(i);
-            hashMap.put(i,list.get(i).intValue());
+            hashMap.put(i, list.get(i).intValue());
         }
 
         System.out.print("\nAfter sorted: ");
@@ -68,7 +65,7 @@ public class TryCollections {
 
     }
 
-    public void hashSwapValues(HashMap<Integer,Integer>hashMap, int valueOneKey, int valueTwoKey) {
+    public void hashSwapValues(HashMap<Integer, Integer> hashMap, int valueOneKey, int valueTwoKey) {
 
         System.out.print("\nBefore swapping: ");
         printHashMap(hashMap);
@@ -92,16 +89,22 @@ public class TryCollections {
 
     }
 
-    public int hashFindValue(HashMap<Integer,Integer>hashMap, int searchVal) {
+    public int hashFindValue(HashMap<Integer, Integer> hashMap, int searchVal) {
 
-        var value = hashMap.get(searchVal);
+        // var value = hashMap.get(searchVal);
+        boolean mappie = hashMap.containsValue(searchVal);
 
-        if (value == null)
-        {
-            return -1;
+        if (hashMap.containsValue(searchVal) == true) {
+            for (int i = 0; i < hashMap.size(); i++) {
+                var value = hashMap.get(i);
+                if (value != null) {
+                    if (value == searchVal) {
+                        return i;
+                    }
+                }
+            }
         }
 
-        return value;
-
+        return -1;
     }
 }

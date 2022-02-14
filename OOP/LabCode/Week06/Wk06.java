@@ -90,7 +90,7 @@ public class Wk06 {
 
         for (int i = min; i <= max; i++) {
             randomValue1 = randomValuesHash.nextInt(max - min) + min;
-            bigHashMap.put(randomValue1, randomValue1);
+            bigHashMap.put(i, randomValue1);
 
         }
         System.out.println("\nFind your value using HASH MAP!");
