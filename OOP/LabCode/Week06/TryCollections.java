@@ -91,9 +91,6 @@ public class TryCollections {
 
     public int hashFindValue(HashMap<Integer, Integer> hashMap, int searchVal) {
 
-        // var value = hashMap.get(searchVal);
-        boolean mappie = hashMap.containsValue(searchVal);
-
         if (hashMap.containsValue(searchVal) == true) {
             for (int i = 0; i < hashMap.size(); i++) {
                 var value = hashMap.get(i);
