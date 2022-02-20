@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class StackOfIntegers {
     private int[] elements;
     private int size;
@@ -24,6 +26,9 @@ public class StackOfIntegers {
     }
 
     public void push(int value) {
+        if (this.size + 1 > this.elements.length) {
+            this.elements = Arrays.copyOf(this.elements, this.elements.length + 10);
+        }
         this.elements[this.size++] = value;
     }
 

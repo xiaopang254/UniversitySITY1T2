@@ -4,7 +4,7 @@ public class Wk04Q2 {
 
         StackOfIntegers stack = new StackOfIntegers();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             stack.push(i);
         }
 

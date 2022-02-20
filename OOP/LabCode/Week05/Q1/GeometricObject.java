@@ -4,9 +4,10 @@ import java.util.Date;
 
 public class GeometricObject {
 
-    protected String color;
-    protected boolean filled;
-    protected Date dateCreated = new Date();
+    // if using getter setter, use private
+    private String color;
+    private boolean filled;
+    private Date dateCreated = new Date();
 
     public GeometricObject() {
     }
