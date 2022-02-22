@@ -49,13 +49,7 @@ class Queue:
         if self.stacks1.stackCount() < 1 and self.stacks2.stackCount() < 1:
             return
 
-        if self.stacks1.stackCount() >= 1 and self.stacks2.stackCount() >= 1:
-            self.stacks2.stackPrint()
-
-        elif self.stacks1.stackCount() < 1 and self.stacks2.stackCount() >= 1:
-            self.stacks2.stackPrint()
-
-        elif self.stacks1.stackCount() == 1 and self.stacks2.stackCount() < 1:
+        if self.stacks1.stackCount() == 1 and self.stacks2.stackCount() < 1:
             self.stacks1.stackPrint()
 
         elif self.stacks1.stackCount() >= 1 and self.stacks2.stackCount() < 1:
@@ -65,11 +59,8 @@ class Queue:
                 else:
                     self.stacks2.stackPrint()
                     break
-            
-
-
-
-
+        else:
+            self.stacks2.stackPrint()
 
 # class Queue:
 #     def __init__(self):
