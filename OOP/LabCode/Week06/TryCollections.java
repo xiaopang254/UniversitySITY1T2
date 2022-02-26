@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -23,15 +24,38 @@ public class TryCollections {
         }
     }
 
+    void bubbleSort(LinkedList<Integer> linkedList) {
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        for (int i = 0; i < linkedList.size(); i++) {
+            arr.add(linkedList.get(i));
+        }
+        int n = arr.size();
+        for (int i = 0; i < n - 1; i++)
+            for (int j = 0; j < n - i - 1; j++)
+                if (arr.get(j) > arr.get(j + 1)) {
+                    // swap arr[j+1] and arr[j]
+                    int temp = arr.get(j);
+                    arr.set(j, arr.get(j + 1));
+                    arr.set(j + 1, temp);
+                }
+    }
+
     public void addAndSort(LinkedList<Integer> linkedList, int value) {
 
-        linkedList.add(value);
-        System.out.print("Before sorted: ");
+        System.out.print("Before add and sorted: ");
         printLinkList(linkedList);
+        bubbleSort(linkedList);
 
-        Collections.sort(linkedList);
+        // find the smallest and equal value
+        for (int i = 0; i < linkedList.size(); i++) {
+            if (linkedList.get(i) >= value) {
+                linkedList.add(i, value);
+                break;
+            }
+        }
 
-        System.out.print("\nAfter sorted: ");
+        System.out.print("\nAfter add and sorted: ");
+
         printLinkList(linkedList);
 
     }
