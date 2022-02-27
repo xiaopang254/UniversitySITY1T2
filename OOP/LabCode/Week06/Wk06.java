@@ -25,13 +25,13 @@ public class Wk06 {
         hashMap.put(4, 9);
         hashMap.put(5, 11);
 
-        System.out.println("Sorting using Collections!");
+        System.out.println("Sorting using custom Collections!");
         System.out.print("Add a value: ");
         Scanner input = new Scanner(System.in);
 
         collect.addAndSort(linkList, input.nextInt());
 
-        System.out.println("\n\nSwapping using Collections!");
+        System.out.println("\n\nSwapping using custom Collections!");
         System.out.println("Choose which index to swap!");
         int indexOne = 0;
         int indexTwo = 0;
@@ -42,7 +42,7 @@ public class Wk06 {
         indexTwo = inputIndex.nextInt();
         collect.swapValues(linkList, indexOne, indexTwo);
 
-        System.out.println("\n\nFinding value using Collections!");
+        System.out.println("\n\nFinding value using custom Collections!");
 
         Random random = new Random();
         LinkedList<Integer> bigLL = new LinkedList<Integer>();

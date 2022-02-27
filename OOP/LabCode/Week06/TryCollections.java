@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class TryCollections {
+
     public void printLinkList(LinkedList<Integer> linkedList) {
         for (Iterator i = linkedList.iterator(); i.hasNext();) {
             System.out.print(i.next());
@@ -24,7 +25,7 @@ public class TryCollections {
         }
     }
 
-    void bubbleSort(LinkedList<Integer> linkedList) {
+    private LinkedList<Integer> bubbleSort(LinkedList<Integer> linkedList) {
         ArrayList<Integer> arr = new ArrayList<Integer>();
         for (int i = 0; i < linkedList.size(); i++) {
             arr.add(linkedList.get(i));
@@ -38,21 +39,27 @@ public class TryCollections {
                     arr.set(j, arr.get(j + 1));
                     arr.set(j + 1, temp);
                 }
+        for (int i = 0; i < linkedList.size(); i ++){
+            linkedList.set(i,arr.get(i));
+
+        }
+        return linkedList;
     }
 
     public void addAndSort(LinkedList<Integer> linkedList, int value) {
 
         System.out.print("Before add and sorted: ");
         printLinkList(linkedList);
+        linkedList.add(value);
         bubbleSort(linkedList);
 
-        // find the smallest and equal value
-        for (int i = 0; i < linkedList.size(); i++) {
-            if (linkedList.get(i) >= value) {
-                linkedList.add(i, value);
-                break;
-            }
-        }
+        // // find the smallest and equal value
+        // for (int i = 0; i < linkedList.size(); i++) {
+        //     if (linkedList.get(i) >= value) {
+        //         linkedList.add(i, value);
+        //         break;
+        //     }
+        // }
 
         System.out.print("\nAfter add and sorted: ");
 
@@ -83,7 +90,24 @@ public class TryCollections {
 
         System.out.print("\nBefore swapping: ");
         printLinkList(linkedList);
-        Collections.swap(linkedList, indexOne, indexTwo);
+
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        for (int i = 0; i < linkedList.size(); i++) {
+            arr.add(linkedList.get(i));
+        }
+        int n = arr.size();
+        if (indexOne < n-1 && indexTwo < n-1){
+            int temp = arr.get(indexOne);
+            arr.set(indexOne, arr.get(indexTwo));
+            arr.set(indexTwo, temp);
+        }
+
+        for (int i = 0; i < linkedList.size(); i ++){
+            linkedList.set(i,arr.get(i));
+        }
+
+
+        //Collections.swap(linkedList, indexOne, indexTwo);
         System.out.print("\nAfter swapping: ");
         printLinkList(linkedList);
 
@@ -103,13 +127,38 @@ public class TryCollections {
     }
 
     public int findValue(LinkedList<Integer> linkedList, int searchVal) {
+        
+        ArrayList<Integer> arr = new ArrayList<Integer>();
         Collections.sort(linkedList);
-        int value = Collections.binarySearch(linkedList, searchVal);
-
-        if (value < 0) {
-            return -1;
+        for (int i = 0; i < linkedList.size(); i++) {
+            arr.add(linkedList.get(i));
         }
-        return value;
+
+        int first = 0;
+        int last = arr.size();
+        int key = searchVal;
+        int mid = arr.size()/2;
+        while (first <= last){
+            if(arr.get(mid) < key){
+                first = mid + 1;
+            }
+            else if (arr.get(mid) == key){
+                return mid;
+            }
+            else{
+                last = mid -1;
+            }
+            mid = (first + last) / 2;
+        }
+        
+        // int value = Collections.binarySearch(linkedList, searchVal);
+
+        // if (value < 0) {
+        //     return -1;
+        // }
+        // return value;
+
+        return -1;
 
     }
 
