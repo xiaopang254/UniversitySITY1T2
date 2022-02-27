@@ -39,8 +39,10 @@ public class TryCollections {
                     arr.set(j, arr.get(j + 1));
                     arr.set(j + 1, temp);
                 }
-        for (int i = 0; i < linkedList.size(); i ++){
-            linkedList.set(i,arr.get(i));
+        for (int i = 0; i < linkedList.size(); i++) {
+            if (arr.get(i) != linkedList.get(i)) {
+                linkedList.set(i, arr.get(i));
+            }
 
         }
         return linkedList;
@@ -55,10 +57,10 @@ public class TryCollections {
 
         // // find the smallest and equal value
         // for (int i = 0; i < linkedList.size(); i++) {
-        //     if (linkedList.get(i) >= value) {
-        //         linkedList.add(i, value);
-        //         break;
-        //     }
+        // if (linkedList.get(i) >= value) {
+        // linkedList.add(i, value);
+        // break;
+        // }
         // }
 
         System.out.print("\nAfter add and sorted: ");
@@ -96,18 +98,19 @@ public class TryCollections {
             arr.add(linkedList.get(i));
         }
         int n = arr.size();
-        if (indexOne < n-1 && indexTwo < n-1){
+        if (indexOne < n - 1 && indexTwo < n - 1) {
             int temp = arr.get(indexOne);
             arr.set(indexOne, arr.get(indexTwo));
             arr.set(indexTwo, temp);
         }
 
-        for (int i = 0; i < linkedList.size(); i ++){
-            linkedList.set(i,arr.get(i));
+        for (int i = 0; i < linkedList.size(); i++) {
+            if (arr.get(i) != linkedList.get(i)) {
+                linkedList.set(i, arr.get(i));
+            }
         }
 
-
-        //Collections.swap(linkedList, indexOne, indexTwo);
+        // Collections.swap(linkedList, indexOne, indexTwo);
         System.out.print("\nAfter swapping: ");
         printLinkList(linkedList);
 
@@ -127,7 +130,7 @@ public class TryCollections {
     }
 
     public int findValue(LinkedList<Integer> linkedList, int searchVal) {
-        
+
         ArrayList<Integer> arr = new ArrayList<Integer>();
         Collections.sort(linkedList);
         for (int i = 0; i < linkedList.size(); i++) {
@@ -137,24 +140,22 @@ public class TryCollections {
         int first = 0;
         int last = arr.size();
         int key = searchVal;
-        int mid = arr.size()/2;
-        while (first <= last){
-            if(arr.get(mid) < key){
+        int mid = arr.size() / 2;
+        while (first <= last) {
+            if (arr.get(mid) < key) {
                 first = mid + 1;
-            }
-            else if (arr.get(mid) == key){
+            } else if (arr.get(mid) == key) {
                 return mid;
-            }
-            else{
-                last = mid -1;
+            } else {
+                last = mid - 1;
             }
             mid = (first + last) / 2;
         }
-        
+
         // int value = Collections.binarySearch(linkedList, searchVal);
 
         // if (value < 0) {
-        //     return -1;
+        // return -1;
         // }
         // return value;
 
