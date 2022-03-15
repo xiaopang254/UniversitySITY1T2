@@ -32,7 +32,7 @@ public class CheckingAccount {
 
     private Boolean checkValueIsNegative(double value) {
 
-        if (value > 0) {
+        if (value >= 0) {
             return true;
         } else {
             throw new InputMismatchException("Value entered is negative.");
