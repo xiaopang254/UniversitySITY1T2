@@ -1,26 +1,41 @@
+import java.util.InputMismatchException;
+
 public class CheckingAccount {
 
     double amount;
     String accountNumber;
 
-    public void deposit(double amount) throws Exception{
+    public void deposit(double amount) throws Exception {
 
-        if (amount < 0){
-            throw new Exception("Invalid amount");
+        if (this.checkValueIsNegative(amount)) {
+            if (amount < 0) {
+                throw new Exception("Invalid amount");
+            }
+            this.amount += amount;
+            System.out.println("The balance after deposit is: $" + this.amount);
         }
-        this.amount += amount;
-        System.out.println("The balance after deposit is: $" + this.amount);
-        
+
     }
 
     public void withdraw(double amount) throws InsufficientFundsException {
 
-        double check = this.amount - amount;
-        if (check < 0){
-            throw new InsufficientFundsException(amount);
+        if (this.checkValueIsNegative(amount)) {
+            double check = this.amount - amount;
+            if (check < 0) {
+                throw new InsufficientFundsException(amount - this.amount);
+            } else {
+                this.amount -= amount;
+                System.out.println("The balance after withdraw is: $" + this.amount);
+            }
+        }
+    }
+
+    private Boolean checkValueIsNegative(double value) {
+
+        if (value > 0) {
+            return true;
         } else {
-            this.amount -= amount;
-            System.out.println("The balance after withdraw is: $" + this.amount);
+            throw new InputMismatchException("Value entered is negative.");
         }
     }
 
