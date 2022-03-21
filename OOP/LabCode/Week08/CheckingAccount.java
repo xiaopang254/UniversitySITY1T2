@@ -8,7 +8,7 @@ public class CheckingAccount {
     public void deposit(double amount) throws Exception {
 
         if (this.checkValueIsNegative(amount)) {
-            if (amount < 0) {
+            if (amount <= 0) {
                 throw new Exception("Invalid amount");
             }
             this.amount += amount;
@@ -21,7 +21,7 @@ public class CheckingAccount {
 
         if (this.checkValueIsNegative(amount)) {
             double check = this.amount - amount;
-            if (check < 0) {
+            if (check <= 0) {
                 throw new InsufficientFundsException(amount - this.amount);
             } else {
                 this.amount -= amount;

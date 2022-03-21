@@ -25,43 +25,46 @@ public class TryCollections {
         }
     }
 
-    private LinkedList<Integer> bubbleSort(LinkedList<Integer> linkedList) {
-        ArrayList<Integer> arr = new ArrayList<Integer>();
-        for (int i = 0; i < linkedList.size(); i++) {
-            arr.add(linkedList.get(i));
-        }
-        int n = arr.size();
-        for (int i = 0; i < n - 1; i++)
-            for (int j = 0; j < n - i - 1; j++)
-                if (arr.get(j) > arr.get(j + 1)) {
-                    // swap arr[j+1] and arr[j]
-                    int temp = arr.get(j);
-                    arr.set(j, arr.get(j + 1));
-                    arr.set(j + 1, temp);
-                }
-        for (int i = 0; i < linkedList.size(); i++) {
-            if (arr.get(i) != linkedList.get(i)) {
-                linkedList.set(i, arr.get(i));
-            }
+    // private LinkedList<Integer> bubbleSort(LinkedList<Integer> linkedList) {
+    // ArrayList<Integer> arr = new ArrayList<Integer>();
+    // for (int i = 0; i < linkedList.size(); i++) {
+    // arr.add(linkedList.get(i));
+    // }
+    // int n = arr.size();
+    // for (int i = 0; i < n - 1; i++)
+    // for (int j = 0; j < n - i - 1; j++)
+    // if (arr.get(j) > arr.get(j + 1)) {
+    // // swap arr[j+1] and arr[j]
+    // int temp = arr.get(j);
+    // arr.set(j, arr.get(j + 1));
+    // arr.set(j + 1, temp);
+    // }
+    // for (int i = 0; i < linkedList.size(); i++) {
+    // if (arr.get(i) != linkedList.get(i)) {
+    // linkedList.set(i, arr.get(i));
+    // }
 
-        }
-        return linkedList;
-    }
+    // }
+    // return linkedList;
+    // }
 
     public void addAndSort(LinkedList<Integer> linkedList, int value) {
 
         System.out.print("Before add and sorted: ");
         printLinkList(linkedList);
-        linkedList.add(value);
-        bubbleSort(linkedList);
+        // linkedList.add(value);
+        // bubbleSort(linkedList);
 
-        // // find the smallest and equal value
-        // for (int i = 0; i < linkedList.size(); i++) {
-        // if (linkedList.get(i) >= value) {
-        // linkedList.add(i, value);
-        // break;
-        // }
-        // }
+        // find the smallest and equal value
+        for (int i = 0; i < linkedList.size(); i++) {
+            if (linkedList.get(i) >= value) {
+                linkedList.add(i, value);
+                break;
+            } else {
+                linkedList.add(value);
+                break;
+            }
+        }
 
         System.out.print("\nAfter add and sorted: ");
 
@@ -98,7 +101,7 @@ public class TryCollections {
             arr.add(linkedList.get(i));
         }
         int n = arr.size();
-        if (indexOne < n - 1 && indexTwo < n - 1) {
+        if (indexOne <= n - 1 && indexTwo <= n - 1) {
             int temp = arr.get(indexOne);
             arr.set(indexOne, arr.get(indexTwo));
             arr.set(indexTwo, temp);
@@ -132,7 +135,8 @@ public class TryCollections {
     public int findValue(LinkedList<Integer> linkedList, int searchVal) {
 
         ArrayList<Integer> arr = new ArrayList<Integer>();
-        Collections.sort(linkedList);
+        // Collections.sort(linkedList);
+
         for (int i = 0; i < linkedList.size(); i++) {
             arr.add(linkedList.get(i));
         }
@@ -151,13 +155,6 @@ public class TryCollections {
             }
             mid = (first + last) / 2;
         }
-
-        // int value = Collections.binarySearch(linkedList, searchVal);
-
-        // if (value < 0) {
-        // return -1;
-        // }
-        // return value;
 
         return -1;
 

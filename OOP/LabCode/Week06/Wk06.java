@@ -51,8 +51,8 @@ public class Wk06 {
         int randomValue;
 
         for (int i = min; i <= max; i++) {
-        randomValue = random.nextInt(max - min) + min;
-        bigLL.add(randomValue);
+            randomValue = random.nextInt(max - min) + min;
+            bigLL.add(randomValue);
 
         }
         System.out.println("\nFind your value using COLLECTIONS BINARY SEARCH!!");
@@ -61,9 +61,9 @@ public class Wk06 {
         int rValue = rInput.nextInt();
         var rIndex = collect.findValue(bigLL, rValue);
         if (rIndex != -1) {
-        System.out.println("Index found: " + rIndex);
+            System.out.println("Index found: " + rIndex);
         } else {
-        System.out.println("Index not found.");
+            System.out.println("Index not found.");
         }
 
         System.out.println("\n\n\n Using HashMap!!");
@@ -75,7 +75,8 @@ public class Wk06 {
 
         System.out.println("\n\nSwapping using Hash Collections!");
         System.out.println("Choose which index to swap!");
-        collect.printHashMap(hashMap);;
+        collect.printHashMap(hashMap);
+        ;
         System.out.print("\nInsert two index: ");
         Scanner inputIndexHash = new Scanner(System.in);
         int indexOneHash = inputIndexHash.nextInt();
@@ -83,7 +84,7 @@ public class Wk06 {
         collect.hashSwapValues(hashMap, indexOneHash, indexTwoHash);
 
         Random randomValuesHash = new Random();
-        HashMap<Integer,Integer>bigHashMap = new HashMap<Integer,Integer>();
+        HashMap<Integer, Integer> bigHashMap = new HashMap<Integer, Integer>();
         int randomValue1;
 
         for (int i = min; i <= max; i++) {

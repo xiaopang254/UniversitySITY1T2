@@ -5,37 +5,37 @@ public class CircleWithException {
     double radius;
     final static double PI = 3.142;
 
-    public CircleWithException(){
+    public CircleWithException() {
 
     }
 
-    public void setRadius(Double radius) throws Exception{
+    public void setRadius(Double radius) throws Exception {
 
-        if (radius < 0){
-            throw new IllegalArgumentException("Value cannot be negative.");
+        if (radius <= 0) {
+            throw new IllegalArgumentException("Value cannot be negative or zero.");
         }
         this.radius = radius;
     }
 
-    public double getRadius(double radius){
+    public double getRadius(double radius) {
         return radius;
     }
 
-    public double getAreaOfCircle() throws Exception{
+    public double getAreaOfCircle() throws Exception {
         double area = PI * (this.radius * this.radius);
-        if (area > 1000){
+        if (area > 1000) {
             throw new Exception("Area too big!");
         }
-        
+
         return area;
     }
 
-    public double getDiameterOfCircle() throws Exception{
+    public double getDiameterOfCircle() throws Exception {
         double diameter = 2 * this.radius;
-        if (diameter > 100){
+        if (diameter > 1000) {
             throw new Exception("Diameter is too big!");
         }
         return diameter;
     }
-    
+
 }
