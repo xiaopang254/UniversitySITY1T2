@@ -13,11 +13,10 @@ public class main {
         while (flag) {
             System.out
                     .println(
-                            "\n\n1: lower case characters\n2: UPPER CASE CHARACTERS\n3: numbers\n4: Random\n0: To Exit.");
+                            "\n\n1: lower case characters\n2: UPPER CASE CHARACTERS\n3: numbers\n4: Random\n5: Prime Number\n0: To Exit.");
             System.out.print("Choice: ");
             Scanner input = new Scanner(System.in);
             int choice = input.nextInt();
-            input.close();
 
             switch (choice) {
                 case 1:
@@ -30,6 +29,9 @@ public class main {
                     userInput(choice);
                     break;
                 case 4:
+                    userInput(choice);
+                    break;
+                case 5:
                     userInput(choice);
                     break;
                 case 0:
@@ -52,6 +54,8 @@ public class main {
                 System.out.print(randomCharacter.getRandomDigitCharacter());
             } else if (choice == 4) {
                 System.out.print(randomCharacter.getRandomCharacter());
+            } else if (choice == 5) {
+                System.out.print(randomCharacter.getRandomPrimeNumber() + " ");
             }
         }
     }

@@ -2,7 +2,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.jupiter.api.*;
 
 public class TestCase1 {
-    RandomCharacter randomChar;
+    RandomCharacter randomChar = new RandomCharacter();;
 
     @BeforeEach
     void setup() {
@@ -13,7 +13,6 @@ public class TestCase1 {
     @DisplayName("Testing Random Lower Case Characters")
     public void testRandomLowerCharacters() {
         char result = randomChar.getRandomLowerCaseLetter();
-
         assertTrue((result >= 'a' && result <= 'z'));
 
     }
@@ -45,40 +44,10 @@ public class TestCase1 {
 
     }
 
-    private boolean primeChecker(int prime) {
-
-        for (int i = 1; i < prime; i++)
-            if (prime % i == 0)
-                return false;
-
-        return true;
-    }
-
-    @RepeatedTest(50)
+    @RepeatedTest(5)
     public void testPrimeLowerRandomCharacter() {
-        char prime = randomChar.getRandomLowerCaseLetter();
-        assertTrue(primeChecker(prime));
-
-    }
-
-    @RepeatedTest(50)
-    public void testPrimeUpperRandomCharacter() {
-        char prime = randomChar.getRandomUpperCaseLetter();
-        assertTrue(primeChecker(prime));
-
-    }
-
-    @RepeatedTest(50)
-    public void testPrimeDigitRandomCharacter() {
-        char prime = randomChar.getRandomDigitCharacter();
-        assertTrue(primeChecker(prime));
-    }
-
-    @RepeatedTest(50)
-    public void testPrimeRandomCharacter() {
-        char prime = randomChar.getRandomCharacter();
-        assertTrue(primeChecker(prime));
-
+        int prime = randomChar.getRandomPrimeNumber();
+        assertTrue(randomChar.primeChecker(prime));
     }
 
 }

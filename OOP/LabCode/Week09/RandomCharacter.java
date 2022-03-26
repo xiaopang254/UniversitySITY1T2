@@ -4,6 +4,7 @@ import java.util.Random;
 public class RandomCharacter {
     private final static int ALPHABET = 26;
     private final static int DIGITS = 9;
+    private final static int PRIME = 100;
     private char[] smallAlphabet = "abcdefghijklmnopqrstuvwsyz".toCharArray();
     private char[] bigAlphabet = "abcdefghijklmnopqrstuvwsyz".toUpperCase().toCharArray();
     private char[] num = "0123456789".toCharArray();
@@ -20,6 +21,10 @@ public class RandomCharacter {
         return random.nextInt((max - min) + min) % modulus;
     }
 
+    private int randomNum2() {
+        return random.nextInt((100 - 1) + 1);
+    }
+
     public char getRandomLowerCaseLetter() {
         return smallAlphabet[randomNum(ALPHABET)];
     }
@@ -30,6 +35,23 @@ public class RandomCharacter {
 
     public char getRandomDigitCharacter() {
         return num[randomNum(DIGITS)];
+    }
+
+    public int getRandomPrimeNumber() {
+        int prime = randomNum2();
+        while (primeChecker(prime) != true) {
+            prime = randomNum2();
+        }
+        return prime;
+    }
+
+    public boolean primeChecker(int num) {
+        if (num > 1) {
+            for (int i = 2; i < num; i++)
+                if ((num % i) == 0)
+                    return false;
+        }
+        return true;
     }
 
     public char getRandomCharacter() {
