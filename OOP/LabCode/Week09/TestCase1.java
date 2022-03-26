@@ -11,6 +11,7 @@ public class TestCase1 {
 
     @Test
     @DisplayName("Testing Random Lower Case Characters")
+    @RepeatedTest(15)
     public void testRandomLowerCharacters() {
         char result = randomChar.getRandomLowerCaseLetter();
         assertTrue((result >= 'a' && result <= 'z'));
@@ -19,6 +20,7 @@ public class TestCase1 {
 
     @Test
     @DisplayName("Testing Random Upper Case Characters")
+    @RepeatedTest(15)
     public void testRandomUpperCharacter() {
         char result = randomChar.getRandomUpperCaseLetter();
 
@@ -27,6 +29,7 @@ public class TestCase1 {
 
     @Test
     @DisplayName("Testing Random Digit Characters")
+    @RepeatedTest(15)
     public void testRandomDigitCharacter() {
         char result = randomChar.getRandomDigitCharacter();
 
@@ -36,6 +39,7 @@ public class TestCase1 {
 
     @Test
     @DisplayName("Testing Random Digit Characters")
+    @RepeatedTest(15)
     public void testRandomCharacter() {
         char result = randomChar.getRandomCharacter();
 
@@ -44,7 +48,9 @@ public class TestCase1 {
 
     }
 
-    @RepeatedTest(5)
+    @Test
+    @DisplayName("Testing to check if Prime number")
+    @RepeatedTest(15)
     public void testPrimeLowerRandomCharacter() {
         int prime = randomChar.getRandomPrimeNumber();
         assertTrue(randomChar.primeChecker(prime));
