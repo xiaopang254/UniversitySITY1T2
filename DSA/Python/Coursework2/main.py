@@ -23,48 +23,84 @@ class BST:
 
     #given a key, find the node and obtain the size, you are allowed to create other helper functions
     def size(self, key):
-
-        pass
-
+        return self.searchNode(self.root, key)
+    
     def size2(self, n):
         if n is None:
             return 0
         else:
-            return 1 + size2(n)
+            return 1 + self.size2(n.left) + self.size2(n.right)
+
+    def searchNode(self, node, key):
+        if node is None:
+            return None
+        else:
+            if key == node.key:
+                return self.size2(node)
+            elif key < node.key:
+                return self.searchNode(node.left,key)
+            else:
+                return self.searchNode(node.right, key)
 
     def createTree(self, a): 
         
         for x in a:
             n = x.split(":")
             self.put(n[0], n[1])
+        pass
     
     #Create a AVL Tree, you are allowed to create other helper functions
     def createBalancedTree(self, a):
+        self.root = None
+        for x in a:
+            n = x.split(":")
+            self.put(n[0], n[1])
+
+    def rotateRight(self, node):
         pass
+
             
     #preOrder Traversal, this should be a recursive function
     def preOrder(self, node):
         #C L R
+        preOrderArray = []
+        if node is None:
+            return None
         if (node != None):
-            print(node.val)
-            self.preOrder(node.left)
-            self.preOrder(node.right)
+            preOrderArray.append("%s:%s" % (str(node.key),node.val))
+            if node.left != None:
+                preOrderArray += self.preOrder(node.left)
+            if node.right != None:
+                preOrderArray += self.preOrder(node.right)
+        return preOrderArray
         
     #inOrder Traversal, this should be a recursive function
     def inOrder(self, node):
         #L C R
+        inOrderArray = []
+        if node is None:
+            return None
         if (node != None):
-            self.inOrder(node.left)
-            print(node.val)
-            self.inOrder(node.right)
+            if node.left != None:
+                inOrderArray += self.inOrder(node.left)
+            inOrderArray.append("%s:%s" % (str(node.key), node.val))
+            if node.right != None:
+                inOrderArray += self.inOrder(node.right)
+        return inOrderArray
              
     #postOrder Traversal, this should be a recursive function
     def postOrder(self, node):
         # L R C
+        postOrderArray = []
+        if node is None:
+            return None
         if (node != None):
-            self.postOrder(node.left)
-            self.postOrder(node.right)
-            print(node.val)
+            if node.left != None:
+                postOrderArray += self.postOrder(node.left)
+            if node.right != None:
+                postOrderArray += self.postOrder(node.right)
+            postOrderArray.append("%s:%s" % (str(node.key), node.val))
+        return postOrderArray
       
     #given a key, obtain its value
     def get(self, key):
@@ -84,7 +120,7 @@ class BST:
         count = self.depth2(self.root, key)
         if count < 0:
             return None
-        return count
+        return count + 1
     
     def depth2(self,node, key):
         if node is None:
@@ -92,19 +128,81 @@ class BST:
         if node.key == key:
             return -1
         elif key < node.key:
-            return 1+ self.depth2(node.left, key)
+            return 1 + self.depth2(node.left, key)
         elif key > node.key:
-            return 1+ self.depth2(node.right, key)
+            return 1 + self.depth2(node.right, key)
 
+    def search(self,key):
+        temp = self.root
+        if temp is None:
+            return self.root
+        
     
     #given a key, find the node and obtain the height, you are allowed to create other helper functions
     def height(self, key):
+        left = self.height2(self.root.left, key)
+        right = self.height2(self.root.right, key)
+        return max(left,right)
 
-        pass 
+    def height2(self, node, key):
+        if node is None:
+            return 0
+        
+        if node.key == key:
+            return 0
+        
+        left = 1 + self.height2(node.left, key)
+        right = 1 + self.height2(node.right, key)
+
+        return max(left, right)
+
 
     #given a key, delete the node, you are allowed to create other helper functions
     def delete(self, key):
-        pass
+        self.root = self.delete2(self.root, key)
+        if self.root is None:
+            return False
+        return True
+
+    def delete2(self, node, key):
+        if node is None:
+            return None
+        if node.key > key:
+            node.left = self.delete2(node.left,key)
+        elif node.key < key:
+            node.right = self.delete2(node.right,key)
+        else:
+            if node.left is None and node.right is None:
+                node = None
+                return node
+            if node.left is None and node.right is not None:
+                return node.right
+            elif node.right is None and node.left is not None:
+                return node.left
+            else:
+                n = self.minimumValue(node.right)
+                node.right = self.deleteMinimum2(node.right)
+                node.key = n.key
+                node.val = n.val
+
+        return node
+    
+    def minimumValue(self, node):
+        currentNode = node
+        while currentNode.left != None:
+            currentNode = currentNode.left
+        return currentNode
+    
+    def deleteMinimum(self):
+        self.root = self.deleteMinimum2(self.root)
+    
+    def deleteMinimum2(self, node):
+        if node.left != None:
+            node.left = self.deleteMinimum2(node.left)
+            return node
+        node = None
+        return node
+        
       	
 class Node:
     left = None
