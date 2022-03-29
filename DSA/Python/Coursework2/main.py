@@ -57,8 +57,54 @@ class BST:
             self.put(n[0], n[1])
 
     def rotateRight(self, node):
-        pass
+        leftChild = node.left
+        leftChildRight = leftChild.right
+        leftChild.right = node
+        node.left = leftChildRight
+        return leftChild
 
+    def rotateLeft(self, node):
+        rightChild = node.right
+        rightChildLeft = rightChild.left
+        rightChild.left = node
+        node.right = rightChildLeft
+        return rightChild
+
+    def avlPut(self, key, val):
+        self.root = self.put2(self.root, key, val)
+    
+    def avlPut2(self, node, key, val):
+        if node is None:
+            #key is not in tree, create node and return node to parent
+            return Node(key, val)
+        if key < node.key:
+            # key is in left subtree
+            node.left = self.put2(node.left, key, val)
+        elif key > node.key:
+            # key is in right subtree
+            node.right = self.put2(node.right, key, val)
+        else:
+            node.val = val
+
+        bal = self.checkBalance(node)
+
+        if bal < -1:
+            if key < node.right.key:
+                node.right = self.rotateRight(node.right)
+            return self.rotateLeft(node)
+
+        if bal > 1:
+            if key > node.left.key:
+                node.left = self.rotateLeft(node.left)
+            return self.rotateRight(node)
+
+        return node
+
+    def checkBalance(self, node):
+        balance = 0
+        if node is not None:
+            return self.checkBalance(node.left) - self.checkBalance(node.right)
+        return balance
             
     #preOrder Traversal, this should be a recursive function
     def preOrder(self, node):
