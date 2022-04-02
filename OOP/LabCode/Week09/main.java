@@ -55,7 +55,9 @@ public class main {
             } else if (choice == 4) {
                 System.out.print(randomCharacter.getRandomCharacter());
             } else if (choice == 5) {
-                System.out.print(randomCharacter.getRandomPrimeNumber() + " ");
+                int primeNum = randomCharacter.getRandomDigitCharacter();
+                System.out.print(primeNum + " ");
+                System.out.print(randomCharacter.primeChecker(primeNum) + " ");
             }
         }
     }
