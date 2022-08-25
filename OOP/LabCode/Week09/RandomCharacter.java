@@ -33,15 +33,17 @@ public class RandomCharacter {
         return bigAlphabet[randomNum(ALPHABET)];
     }
 
-    public char getRandomDigitCharacter() {
-        return num[randomNum(DIGITS)];
+    public int getRandomDigitCharacter() {
+        int number = random.nextInt(9 - 0 + 1) + 0;
+        return number;
+        // return num[randomNum(DIGITS)];
     }
 
     public int getRandomPrimeNumber() {
         int prime = randomNum2();
-        while (primeChecker(prime) != true) {
-            prime = randomNum2();
-        }
+        // while (primeChecker(prime) != true) {
+        // prime = randomNum2();
+        // }
         return prime;
     }
 
@@ -61,7 +63,8 @@ public class RandomCharacter {
         } else if (i == 1) {
             return getRandomUpperCaseLetter();
         } else {
-            return getRandomDigitCharacter();
+            char num = Integer.toString(getRandomDigitCharacter()).charAt(0);
+            return num;
         }
     }
 }

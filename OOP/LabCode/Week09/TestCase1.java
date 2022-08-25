@@ -31,9 +31,9 @@ public class TestCase1 {
     @DisplayName("Testing Random Digit Characters")
     @RepeatedTest(15)
     public void testRandomDigitCharacter() {
-        char result = randomChar.getRandomDigitCharacter();
+        int result = randomChar.getRandomDigitCharacter();
 
-        assertTrue((result >= '0' && result <= '9'));
+        assertTrue((result >= 0 && result <= 9));
 
     }
 
@@ -52,8 +52,12 @@ public class TestCase1 {
     @DisplayName("Testing to check if Prime number")
     @RepeatedTest(15)
     public void testPrimeLowerRandomCharacter() {
-        int prime = randomChar.getRandomPrimeNumber();
-        assertTrue(randomChar.primeChecker(prime));
+        int prime = randomChar.getRandomDigitCharacter();
+
+        boolean result = randomChar.primeChecker(prime);
+        System.out.println(prime);
+        System.out.println(result);
+        assertTrue(result);
     }
 
 }

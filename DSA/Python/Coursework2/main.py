@@ -43,18 +43,16 @@ class BST:
                 return self.searchNode(node.right, key)
 
     def createTree(self, a): 
-        
         for x in a:
             n = x.split(":")
             self.put(n[0], n[1])
-        pass
     
     #Create a AVL Tree, you are allowed to create other helper functions
     def createBalancedTree(self, a):
         self.root = None
         for x in a:
             n = x.split(":")
-            self.put(n[0], n[1])
+            self.avlPut(n[0], n[1])
 
     def rotateRight(self, node):
         leftChild = node.left
@@ -71,7 +69,7 @@ class BST:
         return rightChild
 
     def avlPut(self, key, val):
-        self.root = self.put2(self.root, key, val)
+        self.root = self.avlPut2(self.root, key, val)
     
     def avlPut2(self, node, key, val):
         if node is None:
@@ -79,31 +77,30 @@ class BST:
             return Node(key, val)
         if key < node.key:
             # key is in left subtree
-            node.left = self.put2(node.left, key, val)
+            node.left = self.avlPut2(node.left, key, val)
         elif key > node.key:
             # key is in right subtree
-            node.right = self.put2(node.right, key, val)
+            node.right = self.avlPut2(node.right, key, val)
         else:
             node.val = val
 
         bal = self.checkBalance(node)
-
-        if bal < -1:
-            if key < node.right.key:
+        
+        if (bal < -1):
+            if (key < node.right.key):
                 node.right = self.rotateRight(node.right)
             return self.rotateLeft(node)
 
-        if bal > 1:
-            if key > node.left.key:
+        if (bal > 1):
+            if (key > node.left.key):
                 node.left = self.rotateLeft(node.left)
             return self.rotateRight(node)
-
         return node
 
     def checkBalance(self, node):
         balance = 0
         if node is not None:
-            return self.checkBalance(node.left) - self.checkBalance(node.right)
+            return self.height2(node.left) - self.height2(node.right)
         return balance
             
     #preOrder Traversal, this should be a recursive function
@@ -182,25 +179,33 @@ class BST:
         temp = self.root
         if temp is None:
             return self.root
-        
+    
+    def nodeSearch(self, key):
+        temp = self.root
+        while (temp is not None):
+            if (key > temp.key):
+                temp = temp.right
+            elif (key < temp.key):
+                temp = temp.left
+            else:
+                return temp
+        return None
     
     #given a key, find the node and obtain the height, you are allowed to create other helper functions
     def height(self, key):
-        left = self.height2(self.root.left, key)
-        right = self.height2(self.root.right, key)
+        findNode = self.nodeSearch(key)
+        left = self.height2(findNode.left)
+        right = self.height2(findNode.right)
         return max(left,right)
 
-    def height2(self, node, key):
+    def height2(self, node):
         if node is None:
             return 0
+        else:
+            left = self.height2(node.left)
+            right = self.height2(node.right)
         
-        if node.key == key:
-            return 0
-        
-        left = 1 + self.height2(node.left, key)
-        right = 1 + self.height2(node.right, key)
-
-        return max(left, right)
+        return max(left+1,right+1)
 
 
     #given a key, delete the node, you are allowed to create other helper functions
